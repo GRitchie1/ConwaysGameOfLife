@@ -9,15 +9,14 @@ import math
 
 os.environ["SDL_VIDEO_CENTERED"]='1'
 
-image = Image_Array("input.png")
+image = Image_Array("creepy.png")
+#image = Image_Array("input.png")
 #image = Image_Array("cat.png")
 array = image.getArray()
 
 #resolution
 pixels = image.imageSizes()
 height, width = pixels[0],pixels[1]
-
-ratio = width/height
 
 if width > height:
     scaler=math.floor(1980/width)
@@ -26,8 +25,7 @@ else:
 
 #scaler = 2
 
-
-print(ratio)
+print(scaler)
 
 size = (width*scaler, height*scaler)
 
@@ -48,7 +46,7 @@ white = (255, 255, 255)
 
 offset = 1
 
-Grid = grid.Grid(width,height, scaler, offset, colour = True)
+Grid = grid.Grid(width,height, scaler, offset, colour = False)
 Grid.setArray(array)
 
 manualpause = False
@@ -83,6 +81,7 @@ while run:
             pause = False   
 
     Grid.Conway(off_color=white, on_color=blue1, surface=screen, pause=pause)
+    #Grid.Ritchie(off_color=white, on_color=blue1, surface=screen, pause=pause)
 
     pygame.draw.rect(screen, black, pygame.Rect(0, 0, width*scaler, 40))
     textsurface = textFont.render(str(iteration), False, (255, 0, 0))
@@ -92,7 +91,7 @@ while run:
     #    mouseX, mouseY = pygame.mouse.get_pos()
     #    Grid.HandleMouse(mouseX, mouseY)
 
-
+    print(iteration)
     pygame.display.update()
     
 pygame.quit()

@@ -51,6 +51,33 @@ class Grid:
                         next[x][y] = state
             self.grid_array = next
 
+    def Ritchie(self, off_color, on_color, surface, pause):
+        for y in range(self.rows):
+            for x in range(self.columns):
+                y_pos = y * self.scale
+                x_pos = x * self.scale
+                if self.colour:
+                    on_color = (random.randint(10, 255), random.randint(10, 255), random.randint(10, 255))
+                    off_color = (0,0,0)
+                if self.grid_array[y][x] == 1:
+                    pygame.draw.rect(surface, on_color, [x_pos, y_pos, self.scale-self.offset, self.scale-self.offset])
+                else:
+                    pygame.draw.rect(surface, off_color, [x_pos, y_pos, self.scale-self.offset, self.scale-self.offset])
+
+        next = np.ndarray(shape=(self.size))
+        if pause == False:
+            for x in range(self.rows):
+                for y in range(self.columns):
+                    state = self.grid_array[x][y]
+                    neighbours = self.get_neighbours( x, y)
+                    if state == 0 and neighbours == 3:
+                        next[x][y] = 1
+                    elif state == 1 and (neighbours < 2 or neighbours > 5):
+                        next[x][y] = 0
+                    else:
+                        next[x][y] = state
+            self.grid_array = next
+
     def HandleMouse(self, x, y):
         _x = x//self.scale
         _y = y//self.scale
