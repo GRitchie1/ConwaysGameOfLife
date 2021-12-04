@@ -12,7 +12,7 @@ image = Image_Array("input.png")
 array = image.getArray()
 
 #resolution
-scaler = 5
+scaler = 8
 pixels = image.imageSizes()
 width, height = pixels[0],pixels[1]
 size = (width*scaler, height*scaler)
@@ -34,7 +34,7 @@ white = (255, 255, 255)
 
 offset = 1
 
-Grid = grid.Grid(width,height, scaler, offset)
+Grid = grid.Grid(width,height, scaler, offset, colour = False)
 Grid.setArray(array)
 
 manualpause = False

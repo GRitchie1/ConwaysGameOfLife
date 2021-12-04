@@ -3,8 +3,9 @@ import numpy as np
 import random
 
 class Grid:
-    def __init__(self, width, height, scale, offset):
+    def __init__(self, width, height, scale, offset, colour):
         self.scale = scale
+        self.colour = colour
 
         self.columns = int(height)
         self.rows = int(width)
@@ -28,8 +29,9 @@ class Grid:
             for y in range(self.columns):
                 y_pos = y * self.scale
                 x_pos = x * self.scale
-                #on_color = (random.randint(10, 255), random.randint(10, 255), random.randint(10, 255))
-                #off_color = (0,0,0)
+                if self.colour:
+                    on_color = (random.randint(10, 255), random.randint(10, 255), random.randint(10, 255))
+                    off_color = (0,0,0)
                 if self.grid_array[y][x] == 1:
                     pygame.draw.rect(surface, on_color, [x_pos, y_pos, self.scale-self.offset, self.scale-self.offset])
                 else:
