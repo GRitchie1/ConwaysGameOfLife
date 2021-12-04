@@ -7,8 +7,8 @@ class Grid:
         self.scale = scale
         self.colour = colour
 
-        self.columns = int(height)
-        self.rows = int(width)
+        self.columns = int(width)-1
+        self.rows = int(height)-1
 
         self.size = (self.rows, self.columns)
         self.grid_array = np.ndarray(shape=(self.size))
@@ -25,8 +25,8 @@ class Grid:
 
 
     def Conway(self, off_color, on_color, surface, pause):
-        for x in range(self.rows):
-            for y in range(self.columns):
+        for y in range(self.rows):
+            for x in range(self.columns):
                 y_pos = y * self.scale
                 x_pos = x * self.scale
                 if self.colour:

@@ -5,16 +5,30 @@ import numpy as np
 import os
 import grid
 from image import Image_Array
+import math
 
 os.environ["SDL_VIDEO_CENTERED"]='1'
 
 image = Image_Array("input.png")
+#image = Image_Array("cat.png")
 array = image.getArray()
 
 #resolution
-scaler = 8
 pixels = image.imageSizes()
-width, height = pixels[0],pixels[1]
+height, width = pixels[0],pixels[1]
+
+ratio = width/height
+
+if width > height:
+    scaler=math.floor(1980/width)
+else:
+    scaler=math.floor(1080/width)
+
+#scaler = 2
+
+
+print(ratio)
+
 size = (width*scaler, height*scaler)
 
 print(size)
@@ -34,7 +48,7 @@ white = (255, 255, 255)
 
 offset = 1
 
-Grid = grid.Grid(width,height, scaler, offset, colour = False)
+Grid = grid.Grid(width,height, scaler, offset, colour = True)
 Grid.setArray(array)
 
 manualpause = False
