@@ -35,6 +35,7 @@ offset = 1
 Grid = grid.Grid(width,height, scaler, offset)
 Grid.setArray(array)
 
+manualpause = False
 pause = False
 run = True
 started = 0
@@ -49,20 +50,23 @@ while run:
             if event.key == pygame.K_ESCAPE:
                 run = False
             if event.key == pygame.K_SPACE:
-                pause = not pause
+                manualpause = not pause
     
 
     if started <= 60:
         started += 1
         pause = True
     else:
-        pause = False    
+        if manualpause:
+            pause = True
+        else:
+            pause = False   
 
     Grid.Conway(off_color=white, on_color=blue1, surface=screen, pause=pause)
 
-    if pygame.mouse.get_pressed()[0]:
-        mouseX, mouseY = pygame.mouse.get_pos()
-        Grid.HandleMouse(mouseX, mouseY)
+    #if pygame.mouse.get_pressed()[0]:
+    #    mouseX, mouseY = pygame.mouse.get_pos()
+    #    Grid.HandleMouse(mouseX, mouseY)
 
 
     pygame.display.update()
