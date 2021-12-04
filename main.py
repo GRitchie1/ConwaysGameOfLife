@@ -19,9 +19,9 @@ pixels = image.imageSizes()
 height, width = pixels[0],pixels[1]
 
 if width > height:
-    scaler=math.floor(1980/width)
+    scaler=math.floor(1200/width)
 else:
-    scaler=math.floor(1080/width)
+    scaler=math.floor(900/width)
 
 #scaler = 2
 
@@ -46,7 +46,7 @@ white = (255, 255, 255)
 
 offset = 1
 
-Grid = grid.Grid(width,height, scaler, offset, colour = False)
+Grid = grid.Grid(width,height, scaler, offset, colour = True)
 Grid.setArray(array)
 
 manualpause = False
@@ -80,8 +80,8 @@ while run:
         else:
             pause = False   
 
+    #Grid.Conway(off_color=white, on_color=blue1, surface=screen, pause=pause)
     Grid.Ritchie(off_color=white, on_color=blue1, surface=screen, pause=pause)
-    #Grid.Ritchie(off_color=white, on_color=blue1, surface=screen, pause=pause)
 
     pygame.draw.rect(screen, black, pygame.Rect(0, 0, width*scaler, 40))
     textsurface = textFont.render(str(iteration), False, (255, 0, 0))
