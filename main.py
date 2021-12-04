@@ -9,9 +9,9 @@ import math
 
 os.environ["SDL_VIDEO_CENTERED"]='1'
 
-image = Image_Array("creepy.png")
+#image = Image_Array("creepy.png")
 #image = Image_Array("input.png")
-#image = Image_Array("cat.png")
+image = Image_Array("cat.png")
 array = image.getArray()
 
 #resolution
@@ -80,7 +80,7 @@ while run:
         else:
             pause = False   
 
-    Grid.Conway(off_color=white, on_color=blue1, surface=screen, pause=pause)
+    Grid.Ritchie(off_color=white, on_color=blue1, surface=screen, pause=pause)
     #Grid.Ritchie(off_color=white, on_color=blue1, surface=screen, pause=pause)
 
     pygame.draw.rect(screen, black, pygame.Rect(0, 0, width*scaler, 40))
@@ -91,7 +91,11 @@ while run:
     #    mouseX, mouseY = pygame.mouse.get_pos()
     #    Grid.HandleMouse(mouseX, mouseY)
 
-    print(iteration)
+    if iteration == 100:
+        array = Grid.getArray()
+        image.exportImage(array, "output.png")
+        
+
     pygame.display.update()
     
 pygame.quit()

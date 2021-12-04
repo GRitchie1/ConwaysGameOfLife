@@ -50,6 +50,7 @@ class Grid:
                     else:
                         next[x][y] = state
             self.grid_array = next
+        
 
     def Ritchie(self, off_color, on_color, surface, pause):
         for y in range(self.rows):
@@ -78,6 +79,7 @@ class Grid:
                         next[x][y] = state
             self.grid_array = next
 
+
     def HandleMouse(self, x, y):
         _x = x//self.scale
         _y = y//self.scale
@@ -96,3 +98,6 @@ class Grid:
 
         total -= self.grid_array[x][y]
         return total
+    
+    def getArray(self):
+        return self.grid_array

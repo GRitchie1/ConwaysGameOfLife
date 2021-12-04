@@ -6,7 +6,7 @@ class Image_Array():
     def __init__(self, image):
         self.image = image
         self.convertToBW()
-        self.exportImage(self.grid_array)
+        self.exportImage(self.grid_array, "result_bw.png")
     
     def imageSizes(self):
         return [len(self.grid_array), len(self.grid_array[0])]
@@ -23,10 +23,13 @@ class Image_Array():
     def getArray(self):
         return self.grid_array
 
-    def exportImage(self, array):
+    def exportImage(self, array, output):
         img = np.asarray(array).copy()
         img[img == 0] = 255 # On
         img[img == 1] = 0    # Off
+        
         imfile = Image.fromarray(img)
-        imfile.save("result_bw.png")
+        if imfile.mode != 'RGB':
+            imfile = imfile.convert('RGB')
+        imfile.save(output)
         
